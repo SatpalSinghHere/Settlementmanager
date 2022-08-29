@@ -1,0 +1,111 @@
+{%extends "main/base.html" %} {% load static %} {%block title%}DMden - Home{%endblock%} 
+{%block content%}
+<div class="infocard mx-auto">
+  <div class="inner">
+    <span><img src="{% static "images/Gold_pile.png" %}" alt="Gold: "/>
+
+      
+      {{pos_funds}}
+    
+    </span>
+  </div>
+</div>
+
+<div class="container">
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4">The Hamlet of ~{{settlement_list.settlement_name}}~ welcomes you </h1>
+          <p class="lead">Welcome to the settlement view for the {{settlement_list.get_settlement_level_display}} of ~{{settlement_list.settlement_name | upper}}~. If you want to contribute please do let the DM know! ❤️ </p>
+          <p class="text-muted"> - Created by Luka Kolb</p>
+        </div>
+      </div>
+
+   
+
+  <a  data-toggle="collapse" href="#collapseelement1" role="button" aria-expanded="false" aria-controls="collapseelement1" class="dropdown_link"><div class="sectiontitle">Buildings</div></a>
+    <div class="sectionwrapper collapse" id="collapseelement1" >
+        <div class="wrapper ">
+            {% for building in building_list %}
+            <div class="card buildingCard" style="width: 25rem; margin:5px;">
+                <div class="card-body">
+                  <h5 class="card-title">{{ building.building_title }}<br><span class="badge badge-info">{{ building.level }}</span></h5>
+                  <h6 class="card-subtitle mb-2 text-muted">{{ building.building_description }}</h6>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Tenant: <span class="cardDetail">{{ building.tenant }}</span></li>
+                    <li class="list-group-item">Type: <span class="cardDetail">{{ building.get_type_display }}</span></li>
+                    <li class="list-group-item">Population Modifier: <span class="cardDetail">{{ building.pop_mod }}</span></li>
+                    <li class="list-group-item">Religion Modifier:<span class="cardDetail">N/A</span> </li>
+                    <li class="list-group-item">Next level cost: <span class="cardDetail">{{ building.cost }}</span></li>
+                  </ul>
+                </div>
+            </div>   
+            {% endfor %}
+        </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+    <a  data-toggle="collapse" href="#collapseelement2" role="button" aria-expanded="false" aria-controls="collapseelement2" class="dropdown_link"><div class="sectiontitle">Characters</div></a>
+      <div class="sectionwrapper collapse" id="collapseelement2" >
+          <div class="wrapper ">
+            {% if character_list.isempty %}
+            
+            {% else %}
+            {% endif %}
+
+            <table id="characterTable">
+                <tr>
+                  <th>Name</th>
+                  <th>Function</th>
+                  <th>First contact</th>
+                  <th>Information</th>
+                  <th>additional information</th>
+                </tr>
+                {% for character in character_list %}
+                <tr>
+                  <td>{{character.character_name}}</td>
+                  <td>{{character.character_function}}</td>
+                  <td>{{character.character_first_contact}}</td>
+                  <td>{{character.character_information}}</td>
+                  <td>{{character.character_added_information}}</td>
+                </tr>
+             {% endfor %}
+              </table>
+              
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <a  data-toggle="collapse" href="#collapseelement3" role="button" aria-expanded="false" aria-controls="collapseelement3" class="dropdown_link"><div class="sectiontitle">News</div></a>
+      <div class="sectionwrapper collapse" id="collapseelement3" >
+          <div class="wrapper ">
+  
+            <table id="characterTable">
+              <tr>
+                <th>Event</th>
+                <th>Event description</th>
+                <th>Event effect</th>
+              </tr>
+            {% for event in event_list_asc %}
+              <tr>
+                <td>{{event.event_name}}</td>
+                <td>{{event.event_desc}}</td>
+                <td>{{event.event_effect}}</td>
+              </tr>
+           {% endfor %}
+            </table>
+
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+{%endblock%} 
+{%block script%}
+<script>
+$('#collapseelement1').collapse()
+</script>
+{%endblock%}
