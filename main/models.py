@@ -1,6 +1,5 @@
 from datetime import datetime
 from email.policy import default
-from msilib.schema import Class
 from pyexpat import model
 
 from django.db import models
@@ -19,7 +18,8 @@ class Settlement(models.Model):
     settlement_name = models.CharField(max_length=200)
     settlement_level = models.IntegerField(choices=level.choices)
     settlement_location = models.CharField(max_length=200)
-    population = models.IntegerField(default=0)
+    settlement_population = models.IntegerField(default=0,null=True)
+    starting_population = models.IntegerField(default=0)
     def __str__(self):
         return self.settlement_name
 
@@ -78,4 +78,21 @@ class Funds(models.Model):
 
     def __str__(self):
         return f'+{self.pos_change} , -{self.neg_change}'
+
+class Population(models.Model):
+    settlement = models.ForeignKey(Settlement, on_delete=models.CASCADE)
+    pop_pos_change = models.IntegerField(default=0)
+    pop_neg_change = models.IntegerField(default=0) 
+    pub_date = models.DateTimeField('date published')
+    class Meta:
+        verbose_name_plural = "Populations"
+
+class history():
+    settlement = models.ForeignKey(Settlement, on_delete=models.CASCADE)
+    population = models.IntegerField(default=0)
+    gold = models.IntegerField(default=0)
+
+
+    class Meta:
+        verbose_name_plural = "history"
 

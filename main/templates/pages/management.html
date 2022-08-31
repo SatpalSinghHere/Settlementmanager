@@ -4,10 +4,13 @@
 {%endblock%} 
 {%block content%}
 
-<div class="container">
-    <form action="" method=POST>
-        <button id="approve-btn" type="submit">Approve</button>
-        </form>
+<div class="container" style="color:white; text-align:center; padding-top:50px">
+    <form action="{% url 'progressSettlement:progress_settlement' pk=1 %}"" method=POST>
+        <button class="btn btn-success btn-lg" type="submit">Progress settlement ></button>
+    </form>
+    <p>Current population: {{current_pop}}</p>
+    <p>Building Population mod: {{pop_mod|floatformat:2}}</p>
+    <p>Base Population mod based on LVL: {{base_pop_mod|floatformat:1}}</p>
 </div>
 
 {%endblock%} 
