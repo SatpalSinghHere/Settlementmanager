@@ -1,0 +1,35 @@
+{% if user.is_authenticated %}
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="{%url 'main:info'%}">FAQ</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="#">Manage</a>
+          </li>
+
+      </ul>
+  </div>
+  <div class="mx-auto order-0">
+      <a class="navbar-brand mx-auto" href="#">Settlement manager</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+  </div>
+  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+      <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown" >
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{ user.username}}
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Account</a>
+              <a class="dropdown-item" href="#">Settlements</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Logout</a>
+          </li>
+      </ul>
+  </div>
+  </nav>
+{% endif %}
