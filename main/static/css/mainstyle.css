@@ -1,15 +1,16 @@
 :root {
     --main-color:#45425a;
     --second-color:#FCFCFC;
-    --third-color:#B084CC;
+    --third-color:#b084cc;
     --fourth-color:#1B998B;
     --fifth-color:#fea82f;
+    --sixth-color:#30363d;
 }
 
 body {
-    background-color: var(--main-color);
+    background-size: 1200px;
+    background-color: var(--sixth-color)
 }
-
 
 
 .infocard {
@@ -21,14 +22,16 @@ body {
     position: sticky;
     top: 0;
     z-index: 10;     
-    box-shadow: 10px 10px grey;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
 .inner {
     padding: 30px;
+    text-align: center;
+    
 }
 
-.inner>span {
+.inner>span,i {
     font-size: 5rem;
     font-family: 'Silkscreen', cursive;
     text-align: center;
@@ -106,7 +109,11 @@ body {
     margin-top: 40px;
     border-radius: 30px;
     background-color: var(--fifth-color);
+    
     box-shadow: 10px 10px var(--third-color);
+    box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;
+
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
     text-align: center;
 }
 

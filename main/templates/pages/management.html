@@ -1,16 +1,19 @@
-{%extends "main/base.html" %} {% load static %} {%block title%}SM - Management pane{%endblock%} 
+{%extends "main/base.html" %} {% load static %} {%block title%}SeMa - Management pane{%endblock%} 
 {%block stylesheet%}
 
 {%endblock%} 
 {%block content%}
 
 <div class="container" style="color:white; text-align:center; padding-top:50px">
-    <form action="{% url 'progressSettlement:progress_settlement' pk=1 %}"" method=POST>
+    <form action="{% url 'main:progress_settlement' pk=1 %}" method=POST>
+        {% csrf_token %}
         <button class="btn btn-success btn-lg" type="submit">Progress settlement ></button>
     </form>
     <p>Current population: {{current_pop}}</p>
     <p>Building Population mod: {{pop_mod|floatformat:2}}</p>
     <p>Base Population mod based on LVL: {{base_pop_mod|floatformat:1}}</p>
+    <p>population growth rate: {{growth_rate|floatformat:2}}</p>
+    <p>Projected Population growth: {{new_pop|floatformat:0}}</p>
 </div>
 
 {%endblock%} 
