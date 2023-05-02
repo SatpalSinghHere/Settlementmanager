@@ -58,6 +58,7 @@ def index(request):
      }
     return render(request, 'pages/index.html', data)
 
+#info page
 def info(request):
 
     return render(request, 'pages/info.html')
@@ -65,11 +66,24 @@ def info(request):
 @login_required
 def manage(request):
 
-    #Population calc
+    #Population calc - redundant --> to be changed 
+    def getPop():
+        start_pop = Settlement.objects.filter(id=1).values('starting_population').get()['starting_population']
+
+        pos_pop_change = Population_change.objects.aggregate(Sum('pop_pos_change'))
+        neg_pop_change = Population_change.objects.aggregate(Sum('pop_neg_change'))
+
+        if list(pos_pop_change.values())[0] is None or list(neg_pop_change.values())[0] is None:
+            current_pop = start_pop
+            return current_pop
+        else: 
+            pop_change = list(pos_pop_change.values())[0] + list(neg_pop_change.values())[0]
+            current_pop = start_pop+pop_change
+            return current_pop
 
       
 
-    current_pop=getPop()
+    current_pop= getPop()
     pop_mod = Building.objects.aggregate(Sum('pop_mod')).get('pop_mod__sum', 0.00)
     settlement_level = Settlement.objects.filter(id=1).values('settlement_level').get()['settlement_level']
 
