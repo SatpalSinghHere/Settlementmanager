@@ -18,9 +18,11 @@ def login_user(request):
             messages.success(request,"There was an error logging in, please try again.")
             return redirect('usermanagement:login')
     else:
-        return render(request, 'authentication/login.html', {})
+        return render(request, 'authentication/login.html')
 
 def logout_user(request):
+        print('User logged out')
         logout(request)
+        print('User logged out')
         messages.success(request,"Logout successful!")
-        return render(request, 'usermanagement:login', {})
+        return redirect('usermanagement:login')

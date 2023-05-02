@@ -8,5 +8,4 @@ urlpatterns = [
     path('info', views.info, name='info'),
     path('manage', views.manage, name='manage'),
     path('progressSettlement/<int:pk>', views.progress, name="progress_settlement")
-    
 ]

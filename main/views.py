@@ -12,7 +12,7 @@ from django.http import HttpResponse
 
 
 #get current population 
-
+@login_required
 def index(request):
     
     building_list = Building.objects.all()
@@ -59,6 +59,7 @@ def index(request):
     return render(request, 'pages/index.html', data)
 
 #info page
+@login_required
 def info(request):
 
     return render(request, 'pages/info.html')
